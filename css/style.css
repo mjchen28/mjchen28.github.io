@@ -1,0 +1,304 @@
+/* --- 全局設定 (Global Settings) --- */
+:root {
+  --bg-color: #121212; /* 深黑背景 */
+  --primary-color: #1e1e1e; /* 卡片/導覽列背景 */
+  --text-color: #e0e0e0; /* 主要文字顏色 */
+  --accent-color: #89CFF0; /* 強調色 (科技藍) */
+  --secondary-text: #888888; /* 次要文字 */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 3px solid var(--accent-color);
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+/* --- 導覽列 (Navigation) --- */
+header {
+  background-color: var(--primary-color);
+  border-bottom: 1px solid #333;
+  padding: 0 2rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 70px;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 2rem;
+}
+
+.nav-links a {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.nav-links a.active {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* --- 頁尾 (Footer) --- */
+footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+  background-color: var(--primary-color);
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+}
+
+footer a {
+  margin: 0 0.5rem;
+  font-size: 1.5rem; /* 放大圖示 */
+}
+
+
+/* --- 按鈕 (Button) --- */
+.btn {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* --- 首頁 (index.html) --- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: calc(80vh - 70px); /* 80% 視窗高度 - 導覽列高度 */
+}
+
+.hero h1 {
+  font-size: 4rem;
+  border-bottom: none;
+  margin: 0;
+  color: #ffffff;
+}
+
+.hero .subtitle {
+  font-size: 1.5rem;
+  color: var(--secondary-text);
+  margin: 1rem 0 2rem 0;
+}
+
+.hero .cta-buttons .btn {
+  margin: 0 0.5rem;
+}
+
+/* --- 關於 (about.html) --- */
+.about-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+.about-bio {
+  flex: 2; /* 佔 2/3 */
+}
+.about-photo {
+  flex: 1; /* 佔 1/3 */
+}
+.about-photo img {
+  width: 100%;
+  border-radius: 8px;
+  border: 3px solid #333;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-category {
+  background-color: var(--primary-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.skill-category h3 {
+  margin-top: 0;
+  color: var(--accent-color);
+}
+
+.skill-category ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.skill-category li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+/* 用 CSS 創造一個 "晶片" 或 "節點" 的圖示 */
+.skill-category li::before {
+  content: '■';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-color);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+
+/* --- 專案 (projects.html) --- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  overflow: hidden; /* 讓圖片圓角生效 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 170, 255, 0.3); /* 滑過時顯示強調色陰影 */
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* 確保圖片填滿而不變形 */
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-content h3 {
+  margin-top: 0;
+}
+
+.project-content p {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  margin-bottom: 1rem;
+}
+
+.project-tags span {
+  display: inline-block;
+  background-color: #333;
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin: 3px 3px 3px 0;
+}
+
+.btn-small {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+}
+.btn-small:hover {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+/* --- 履歷 (resume.html) --- */
+.resume-container {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.resume-web {
+  background-color: var(--primary-color);
+  padding: 2rem;
+  margin-top: 3rem;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.resume-web h3 {
+    color: var(--accent-color);
+}
