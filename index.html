@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,23 +13,37 @@
   <header>
     <nav class="navbar">
       <a href="https://mjchen28.github.io" class="nav-logo">Jay.</a>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="https://mjchen28.github.io" class="active">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="resume.html">Resume</a></li>
-        <li><a href="ch/index.html"><b>繁中</b></a></li> </ul>
+        <li><a href="ch/index.html"><b>繁中</b></a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <div class="hero">
-      <h1>Jay Chen</h1>
-      <p class="subtitle">Digital IC Design  |  AI Accelerator  |  NYCU</p>
-      <div class="cta-buttons">
-        <a href="projects.html" class="btn">My Projects</a>
-        <a href="about.html" class="btn">About Me</a>
+      <canvas id="particle-canvas"></canvas>
+      <div class="hero-content">
+        <img src="images/profile_image.jpeg" alt="Jay Chen" class="hero-photo">
+        <h1>Jay Chen</h1>
+        <p class="subtitle">
+          <span id="typing-text"></span><span class="typing-cursor"></span>
+        </p>
+        <div class="cta-buttons">
+          <a href="projects.html" class="btn">My Projects</a>
+          <a href="about.html" class="btn btn-outline">About Me</a>
+        </div>
+        <div class="hero-social">
+          <a href="https://www.linkedin.com/in/meng-chieh-chen-b53045268" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/_mjchen28__/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="mailto:tkchieh28@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
       </div>
     </div>
   </main>
@@ -40,8 +54,96 @@
       <a href="https://www.instagram.com/_mjchen28__/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
       <a href="mailto:tkchieh28@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>&copy; 2025 Jay. All Rights Reserved.</p>
+    <p>&copy; 2026 Jay. All Rights Reserved.</p>
   </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="js/main.js"></script>
+  <script>
+    // === Particle Canvas ===
+    const canvas = document.getElementById('particle-canvas');
+    const ctx    = canvas.getContext('2d');
+    const ACCENT = '137, 207, 240';
+    const COUNT  = 55;
+    const DIST   = 130;
+    let particles = [];
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', () => { resize(); particles = init(); });
+
+    function init() {
+      return Array.from({ length: COUNT }, () => ({
+        x:  Math.random() * canvas.width,
+        y:  Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        r:  Math.random() * 1.8 + 0.8
+      }));
+    }
+    particles = init();
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${ACCENT}, 0.65)`;
+        ctx.fill();
+      });
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx   = particles[i].x - particles[j].x;
+          const dy   = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < DIST) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(${ACCENT}, ${(1 - dist / DIST) * 0.28})`;
+            ctx.lineWidth   = 1;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // === Typing Animation ===
+    const phrases = ['Digital IC Design', 'AI Accelerator', 'NYCU Graduate Student'];
+    let phraseIdx = 0, charIdx = 0, deleting = false;
+    const typingEl = document.getElementById('typing-text');
+
+    function typeEffect() {
+      const current = phrases[phraseIdx];
+      if (!deleting) {
+        typingEl.textContent = current.slice(0, ++charIdx);
+        if (charIdx === current.length) {
+          deleting = true;
+          setTimeout(typeEffect, 1800);
+          return;
+        }
+      } else {
+        typingEl.textContent = current.slice(0, --charIdx);
+        if (charIdx === 0) {
+          deleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+        }
+      }
+      setTimeout(typeEffect, deleting ? 55 : 95);
+    }
+    typeEffect();
+  </script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,68 +13,83 @@
   <header>
     <nav class="navbar">
       <a href="https://mjchen28.github.io" class="nav-logo">Jay.</a>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
       <ul class="nav-links">
         <li><a href="https://mjchen28.github.io">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="projects.html" class="active">Projects</a></li>
         <li><a href="resume.html">Resume</a></li>
-        <li><a href="ch/projects.html"><b>繁中</b></a></li> </ul>
+        <li><a href="ch/projects.html"><b>繁中</b></a></li>
       </ul>
     </nav>
   </header>
 
   <main class="container">
-    <h1>My Projects</h1>
-    <p>The following are the main projects I participated in during my master's program and university years:<br><br></p>
+    <h1 class="section-heading fade-in">My Projects</h1>
+    <p class="fade-in">The following are the main projects I participated in during my master's program and university years.</p>
 
-    <div class="project-grid">
+    <div class="project-grid" style="margin-top: 2rem;">
 
-      <div class="project-card">
-        <img src="images/VESTA_architecture.png" alt="VESTA Architecture">
+      <div class="project-card fade-in">
+        <div class="card-image">
+          <img src="images/VESTA_architecture.png" alt="VESTA Architecture">
+          <div class="card-overlay">
+            <p>A novel hardware accelerator enabling efficient deployment of SNN-based transformer models on edge devices, presented at 2024 APCCAS and VLSI Design/CAD Symposium.</p>
+            <a href="resume/MENGCHIEH_CHEN_paper_VESTA.pdf" target="_blank" class="btn-small">Learn More</a>
+          </div>
+        </div>
         <div class="project-content">
-          <h3><strong>[ University Project ]</strong><br> VESTA: A Versatile SNN-Based Transformer Accelerator ...</h3>
-          <p>This paper introduces VESTA, a novel hardware accelerator that enables the efficient deployment of SNN-based transformer models on edge devices ...</p>
+          <h3><strong>[ University Project ]</strong><br>VESTA: A Versatile SNN-Based Transformer Accelerator</h3>
           <div class="project-tags">
             <span>Transformer</span>
             <span>SNN</span>
             <span>AI Accelerator</span>
             <span>Verilog</span>
           </div>
-          <a href="resume/MENGCHIEH_CHEN_paper_VESTA.pdf" target="_blank" class="btn-small">Learn More</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <img src="images/spikformer.png" alt="Spikformer">
+      <div class="project-card fade-in fade-in-delay-1">
+        <div class="card-image">
+          <img src="images/spikformer.png" alt="Spikformer">
+          <div class="card-overlay">
+            <p>Applied the Spikformer architecture to the Spiking Speech Commands (SSC) dataset for audio classification, achieving 74.63% accuracy.</p>
+            <a href="resume/MENGCHIEH_CHEN_poster_DL.pdf" target="_blank" class="btn-small">Learn More</a>
+          </div>
+        </div>
         <div class="project-content">
-          <h3><strong>[ Course Project ]</strong><br> Spikformer For Audio Classification </h3>
-          <p>This project applied the Spikformer architecture to the Spiking Speech Commands (SSC) dataset for audio classification, achieving a 74.63% accuracy ...</p>
+          <h3><strong>[ Course Project ]</strong><br>Spikformer For Audio Classification</h3>
           <div class="project-tags">
             <span>Deep Learning</span>
             <span>SNN</span>
             <span>Fine-Tune</span>
             <span>PyTorch</span>
           </div>
-          <a href="resume/MENGCHIEH_CHEN_poster_DL.pdf" target="_blank" class="btn-small">Learn More</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <img src="images/mlchip_fp.png" alt="mlchip final project architecture">
+      <div class="project-card fade-in fade-in-delay-2">
+        <div class="card-image">
+          <img src="images/mlchip_fp.png" alt="mlchip final project architecture">
+          <div class="card-overlay">
+            <p>Integrated an AXI4 DMA architecture into a NoC-based CNN accelerator in SystemC, with design optimizations to improve overall system performance.</p>
+            <a href="resume/MENGCHIEH_CHEN_report_mlchip_fp.pdf" target="_blank" class="btn-small">Learn More</a>
+          </div>
+        </div>
         <div class="project-content">
-          <h3><strong>[ Course Project ]</strong><br> NoC-based CNN architecture with AXI4 DMA architecture </h3>
-          <p>This project integrate an AXI4 DMA architecture into an NoC-based CNN accelerator in SystemC, with design optimization to improve the system's performance.</p>
+          <h3><strong>[ Course Project ]</strong><br>NoC-based CNN with AXI4 DMA Architecture</h3>
           <div class="project-tags">
             <span>NoC</span>
             <span>CNN</span>
             <span>AXI4</span>
             <span>SystemC</span>
           </div>
-          <a href="resume/MENGCHIEH_CHEN_report_mlchip_fp.pdf" target="_blank" class="btn-small">Learn More</a>
         </div>
       </div>
 
-      </div>
+    </div>
   </main>
 
   <footer>
@@ -83,8 +98,14 @@
       <a href="https://www.instagram.com/_mjchen28__/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
       <a href="mailto:tkchieh28@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
     </div>
-    <p>&copy; 2025 Jay. All Rights Reserved.</p>
+    <p>&copy; 2026 Jay. All Rights Reserved.</p>
   </footer>
+
+  <button class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="js/main.js"></script>
 
 </body>
 </html>
