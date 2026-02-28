@@ -63,63 +63,7 @@
 
   <script src="../js/main.js"></script>
   <script>
-    // === Particle Canvas ===
-    const canvas = document.getElementById('particle-canvas');
-    const ctx    = canvas.getContext('2d');
-    const ACCENT = '137, 207, 240';
-    const COUNT  = 55;
-    const DIST   = 130;
-    let particles = [];
-
-    function resize() {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', () => { resize(); particles = init(); });
-
-    function init() {
-      return Array.from({ length: COUNT }, () => ({
-        x:  Math.random() * canvas.width,
-        y:  Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
-        r:  Math.random() * 1.8 + 0.8
-      }));
-    }
-    particles = init();
-
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${ACCENT}, 0.65)`;
-        ctx.fill();
-      });
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx   = particles[i].x - particles[j].x;
-          const dy   = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < DIST) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(${ACCENT}, ${(1 - dist / DIST) * 0.28})`;
-            ctx.lineWidth   = 1;
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-    draw();
-
-    // === Typing Animation ===
+    // === Typing Animation (starts immediately, no layout dependency) ===
     const phrases = ['數位 IC 設計', 'AI 加速器設計', '陽明交通大學 電子所'];
     let phraseIdx = 0, charIdx = 0, deleting = false;
     const typingEl = document.getElementById('typing-text');
@@ -143,6 +87,71 @@
       setTimeout(typeEffect, deleting ? 60 : 110);
     }
     typeEffect();
+
+    // === Particle Canvas (deferred until layout is complete) ===
+    window.addEventListener('load', function () {
+      const canvas = document.getElementById('particle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      const ACCENT = '137, 207, 240';
+      const COUNT  = 55;
+      const DIST   = 130;
+      let particles = [];
+      let animRunning = true;
+
+      function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        canvas.width  = rect.width  || window.innerWidth;
+        canvas.height = rect.height || Math.round(window.innerHeight * 0.82);
+      }
+
+      function init() {
+        return Array.from({ length: COUNT }, () => ({
+          x:  Math.random() * canvas.width,
+          y:  Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          r:  Math.random() * 1.8 + 0.8
+        }));
+      }
+
+      resize();
+      particles = init();
+      window.addEventListener('resize', function () { resize(); particles = init(); });
+
+      function draw() {
+        if (!animRunning) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${ACCENT}, 0.65)`;
+          ctx.fill();
+        });
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx   = particles[i].x - particles[j].x;
+            const dy   = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < DIST) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(${ACCENT}, ${(1 - dist / DIST) * 0.28})`;
+              ctx.lineWidth   = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    });
   </script>
 
 </body>

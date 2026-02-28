@@ -1,5 +1,8 @@
 // === Shared Site Interactions ===
 
+// Mark JS as available — used as CSS guard so fade-in opacity:0 only applies when JS loads
+document.documentElement.classList.add('js-loaded');
+
 // 1. Navbar: glassmorphism effect on scroll
 const header = document.querySelector('header');
 window.addEventListener('scroll', () => {
