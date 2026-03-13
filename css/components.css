@@ -292,11 +292,13 @@
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease;
+  will-change: transform;
 }
 
 .carousel-slide {
-  min-width: 100%;
+  flex-shrink: 0; /* width is set explicitly by JavaScript */
   position: relative;
+  box-sizing: border-box;
 }
 
 .carousel-slide img {

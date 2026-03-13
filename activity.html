@@ -149,9 +149,21 @@
     let current = 0;
     let autoTimer;
 
+    // Set each slide width to the carousel's pixel width so the track
+    // has an exact, reliable size on every browser and screen.
+    function sizeSlides() {
+      const w = carousel.offsetWidth;
+      track.style.width = (w * slides.length) + 'px';
+      slides.forEach(s => { s.style.width = w + 'px'; });
+      // Re-apply current position without animation
+      track.style.transition = 'none';
+      track.style.transform = `translateX(-${current * w}px)`;
+      requestAnimationFrame(() => { track.style.transition = ''; });
+    }
+
     function goTo(idx) {
       current = (idx + slides.length) % slides.length;
-      track.style.transform = `translateX(-${current * 100}%)`;
+      track.style.transform = `translateX(-${current * carousel.offsetWidth}px)`;
       dots.forEach((d, i) => d.classList.toggle('active', i === current));
     }
 
@@ -172,7 +184,11 @@
     carousel.addEventListener('mouseenter', () => clearInterval(autoTimer));
     carousel.addEventListener('mouseleave', startTimer);
 
-    startTimer();
+    // Recalculate on resize (e.g. window resize or orientation change)
+    window.addEventListener('resize', sizeSlides);
+
+    // Initialise after layout is ready
+    window.addEventListener('load', () => { sizeSlides(); startTimer(); });
   </script>
 
 </body>
