@@ -1,0 +1,61 @@
+/* --- Global Settings --- */
+:root {
+  --bg-color: #121212;           /* deep black background */
+  --primary-color: #1e1e1e;      /* card / navbar background */
+  --text-color: #e0e0e0;         /* primary text color */
+  --accent-color: #89CFF0;       /* accent color (tech blue) */
+  --accent-rgb: 137, 207, 240;   /* accent color as RGB for rgba() usage */
+  --secondary-text: #888888;     /* secondary text */
+  --border-color: #333;          /* general border / divider color */
+  --navbar-height: 70px;         /* used in hero min-height calc */
+  --radius: 8px;                 /* standard border-radius */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 2.5rem;
+  border-bottom: 3px solid var(--accent-color);
+  display: inline-block;
+  padding-bottom: 5px;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin-top: 2.5rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ffffff;
+}

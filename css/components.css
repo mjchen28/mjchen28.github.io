@@ -1,0 +1,430 @@
+/* --- Buttons --- */
+.btn {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #ffffff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Outline button variant */
+.btn-outline {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+/* Small button (used in project card overlays) */
+.btn-small {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--border-color);
+  color: #fff;
+}
+
+.btn-small:hover {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+
+/* --- About (about.html) --- */
+.about-content {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.about-bio {
+  flex: 1;
+  font-size: 1.2rem;
+}
+
+.about-photo {
+  flex: 0 0 320px; /* fixed 260px wide so the photo stays compact */
+}
+
+.about-photo img {
+  width: 100%;
+  border-radius: var(--radius);
+  border: 3px solid var(--border-color);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-category {
+  background-color: var(--primary-color);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent-color);
+}
+
+.skill-category h3 {
+  margin-top: 0;
+  color: var(--accent-color);
+}
+
+.skill-category ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.skill-category li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+/* CSS-created chip/node bullet icon */
+.skill-category li::before {
+  content: '■';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent-color);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Skill tags */
+.skill-group { margin-bottom: 1.8rem; }
+.skill-group h3 { font-size: 1.1rem; color: var(--accent-color); margin: 0 0 0.6rem 0; }
+.skills-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.skill-tag {
+  background-color: var(--primary-color);
+  border: 1px solid rgba(var(--accent-rgb), 0.45);
+  color: var(--text-color);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: default;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.skill-tag:hover {
+  background-color: var(--accent-color);
+  color: #000;
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+
+/* --- Timeline (About page) --- */
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-top: 1rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent-color), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.1rem;
+  top: 0.35rem;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  border: 2px solid var(--bg-color);
+  box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.55);
+}
+
+.timeline-date {
+  display: inline-block;
+  font-size: 0.95rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-item h3 { margin: 0 0 0.2rem 0; font-size: 1.2rem; }
+.timeline-item p  { color: var(--secondary-text); font-size: 1rem; margin: 0.1rem 0; }
+.timeline-item ul { color: var(--secondary-text); font-size: 1rem; margin: 0.4rem 0 0 0; padding-left: 1.2rem; }
+
+
+/* --- Projects (projects.html) --- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: var(--primary-color);
+  border-radius: var(--radius);
+  overflow: hidden; /* clip child image to border-radius */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 170, 255, 0.3); /* accent glow shadow on hover */
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* fill without distortion */
+}
+
+.project-content {
+  padding: 1.5rem;
+}
+
+.project-content h3 {
+  margin-top: 0;
+}
+
+.project-content p {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.project-tags {
+  margin-bottom: 1rem;
+}
+
+.project-tags span {
+  display: inline-block;
+  background-color: var(--border-color);
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 12px;
+  margin: 3px 3px 3px 0;
+}
+
+/* Project card image overlay */
+.card-image { position: relative; overflow: hidden; }
+
+.card-image img {
+  width: 100%; height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(8, 12, 22, 0.88);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.25rem;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  text-align: center;
+}
+
+.card-overlay p { color: var(--text-color); font-size: 0.85rem; margin-bottom: 1rem; line-height: 1.5; }
+.project-card:hover .card-image img { transform: scale(1.06); }
+.project-card:hover .card-overlay   { opacity: 1; }
+
+
+/* --- Resume (resume.html) --- */
+.resume-container {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.resume-web {
+  background-color: var(--primary-color);
+  padding: 2rem;
+  margin-top: 3rem;
+  border-radius: var(--radius);
+  text-align: left;
+}
+
+.resume-web h3 {
+  color: var(--accent-color);
+}
+
+
+/* --- Activity Page: Carousel --- */
+.carousel {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Semi-transparent caption bar at the top of each carousel slide */
+.carousel-caption {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  margin: 0;
+  padding: 0.9rem 1.25rem 0.6rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.62), transparent);
+  color: #fff;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: none;
+  font-size: 2.2rem;
+  line-height: 1;
+  padding: 0.4rem 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: rgba(var(--accent-rgb), 0.65);
+}
+
+.carousel-prev { left: 0.75rem; }
+.carousel-next { right: 0.75rem; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.55rem;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.carousel-dot.active {
+  background: var(--accent-color);
+}
+
+/* --- Activity Page: Photo Grid --- */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.activity-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-color: var(--primary-color);
+}
+
+/* Image wrapper keeps the 4:3 crop area */
+.activity-img-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.activity-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.activity-item:hover .activity-img-wrap img {
+  transform: scale(1.05);
+}
+
+/* Caption sits below the photo inside the card */
+.activity-caption {
+  margin: 0;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.88rem;
+  color: var(--secondary-text);
+  text-align: center;
+}
+
+
+/* --- Back-to-Top Button --- */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  background-color: var(--accent-color);
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  width: 44px; height: 44px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 999;
+  box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.25);
+}
+
+.back-to-top.visible { opacity: 1; pointer-events: all; }
+.back-to-top:hover { transform: translateY(-3px); box-shadow: 0 6px 22px rgba(var(--accent-rgb), 0.45); }
